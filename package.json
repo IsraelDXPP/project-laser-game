@@ -19,7 +19,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:android": "npm run build && npx cap sync android && cd android && gradlew assembleDebug",
-    "build:windows": "npm run build && npx electron-packager . \"Project Laser\" --platform=win32 --arch=x64 --out=dist_electron --overwrite --ignore=\"\\.vs\""
+    "build:windows": "npx electron-packager . \"Project Laser\" --platform=win32 --arch=x64 --out=dist_electron --overwrite --ignore=\"\\.vs|dist_electron\""
   },
   "repository": {
     "type": "git",

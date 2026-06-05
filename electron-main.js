@@ -6,14 +6,15 @@ function createWindow() {
     width: 850,
     height: 480,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false
     },
     title: "Project Laser - Reengineered",
     autoHideMenuBar: true
   });
 
-  // Load the Vite build index.html
-  win.loadFile(path.join(__dirname, 'dist', 'index.html'));
+  // Load the root index.html directly (game assets live next to it)
+  win.loadFile(path.join(__dirname, 'index.html'));
 }
 
 app.whenReady().then(() => {
