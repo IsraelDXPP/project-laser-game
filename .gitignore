@@ -3,3 +3,4 @@ dist/
 android/
 dist_electron/
 *.log
+/.vs
