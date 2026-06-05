@@ -2,14 +2,17 @@
   "name": "project-laser-game",
   "version": "1.0.0",
   "description": "Easter egg from Supercell's Brawl Stars working in desktop browser with arrow key and space bar controls:  \r https://andrei-paraschiv.github.io/project-laser-game/",
-  "main": "index.js",
+  "main": "electron-main.js",
   "devDependencies": {
+    "@capacitor/cli": "^8.4.0",
     "vite": "^8.0.16"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:android": "npm run build && npx cap sync android && cd android && gradlew assembleDebug",
+    "build:windows": "npm run build && electron-builder"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/IsraelDXPP/project-laser-game/issues"
   },
-  "homepage": "https://github.com/IsraelDXPP/project-laser-game#readme"
+  "homepage": "https://github.com/IsraelDXPP/project-laser-game#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/core": "^8.4.0"
+  }
 }
