@@ -1,6 +1,45 @@
+# Dependencias
 node_modules/
+
+# Build output
 dist/
-android/
 dist_electron/
+
+# Android
+android/app/build/
+android/.gradle/
+android/build/
+android/captures/
+android/local.properties
+*.apk
+*.aab
+
+# IDE / Editor
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Logs
 *.log
-/.vs
+npm-debug.log*
+
+# Cache
+.cache/
+.temp/
+tmp/
+
+# Capacitor
+android/app/src/main/assets/public/

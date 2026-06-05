@@ -73,11 +73,54 @@ async function createWindow() {
     autoHideMenuBar: true
   });
 
-  // Open DevTools so you can see exactly which files are 404ing
-  win.webContents.openDevTools();
+	// win.webContents.openDevTools({ mode: 'detach' });
 
-  // Load via local HTTP server so absolute paths like /src/... resolve correctly
-  win.loadURL(`http://127.0.0.1:${port}/index.html`);
+	win.webContents.on('did-start-loading', () => {
+	  console.log('[Electron] Started loading');
+	});
+
+	win.webContents.on('did-finish-load', () => {
+	  console.log('[Electron] Finished loading');
+	});
+
+	win.webContents.on('did-fail-load', (
+	  event,
+	  errorCode,
+	  errorDescription,
+	  validatedURL
+	) => {
+	  console.error('[Electron] FAIL LOAD');
+	  console.error('Code:', errorCode);
+	  console.error('Description:', errorDescription);
+	  console.error('URL:', validatedURL);
+	});
+
+	win.webContents.on('render-process-gone', (event, details) => {
+	  console.error('[Electron] Renderer crashed');
+	  console.error(details);
+	});
+
+	win.webContents.on('unresponsive', () => {
+	  console.error('[Electron] Renderer unresponsive');
+	});
+
+	win.webContents.on('console-message', (
+	  event,
+	  level,
+	  message,
+	  line,
+	  sourceId
+	) => {
+	  console.log(
+		`[Renderer L${level}] ${message} (${sourceId}:${line})`
+	  );
+	});
+
+	win.webContents.on('did-stop-loading', () => {
+	  console.log('[Electron] Loading stopped');
+	});
+
+	win.loadURL(`http://127.0.0.1:${port}/index.html`);
 }
 
 app.whenReady().then(() => {
