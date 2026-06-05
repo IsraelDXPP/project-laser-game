@@ -1,36 +1,31 @@
 {
   "name": "project-laser-game",
   "version": "1.0.0",
-  "description": "Easter egg from Supercell's Brawl Stars working in desktop browser with arrow key and space bar controls:  \r https://andrei-paraschiv.github.io/project-laser-game/",
+  "description": "Easter egg from Supercell's Brawl Stars working in desktop browser with arrow key and space bar controls:\r\nhttps://andrei-paraschiv.github.io/project-laser-game/",
   "main": "electron-main.js",
   "devDependencies": {
     "@capacitor/cli": "^8.4.0",
-    "@electron/packager": "^20.0.1",
+    "@electron/packager": "^18.3.6",
     "electron": "^42.3.3",
-    "electron-builder": "^26.8.1",
+    "electron-builder": "^26.0.12",
     "vite": "^8.0.16"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/core": "^8.4.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "build:android": "npm run build && npx cap sync android && cd android && gradlew assembleDebug",
-    "build:windows": "npm run build && npx electron-packager . \"Project Laser\" --platform=win32 --arch=x64 --out=dist_electron --overwrite --ignore=\"\\\\.vs|android|dist_electron|node_modules\""
+    "build:windows": "npm run build && npx electron-packager . \"Project Laser\" --platform=win32 --arch=x64 --out=dist_electron --overwrite --ignore=\"\\.vs\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IsraelDXPP/project-laser-game.git"
+    "url": "https://github.com/IsraelDXPP/project-laser-game.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/IsraelDXPP/project-laser-game/issues"
-  },
-  "homepage": "https://github.com/IsraelDXPP/project-laser-game#readme",
-  "dependencies": {
-    "@capacitor/android": "^8.4.0",
-    "@capacitor/core": "^8.4.0"
-  }
+  "author": "IsraelDXPP",
+  "license": "SEE LICENSE IN LICENSE"
 }
