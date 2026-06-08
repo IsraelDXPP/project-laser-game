@@ -1,40 +1,68 @@
-# Project Laser - Reengineered
+# Brawl Stars - Project Laser (Desktop & Mobile)
 
-Easter egg from Supercell's Brawl Stars working in a desktop browser with arrow key and space bar controls:  
-[Original Demo (Obfuscated)](https://andrei-paraschiv.github.io/project-laser-game/)
+Este repositorio contiene una versión re-ingenierizada y extraída de "Project Laser" (el easter egg de 8-Bit de Brawl Stars), adaptada para funcionar de manera nativa en múltiples plataformas.
 
-## Reverse Engineering & Decompilation
+El código base original estaba fuertemente ofuscado, pero ha sido desofuscado y reestructurado para permitir su compilación en Windows y Android usando tecnologías modernas.
 
-Este proyecto ha sido completamente desofuscado y sometido a ingeniería inversa. Originalmente, la lógica del juego estaba minificada y ofuscada en un archivo empaquetado de ~1.9 MB (`main.js`). 
+## Arquitectura
 
-A través de herramientas de ingeniería inversa, el código fuente original ha sido extraído, desofuscado y restaurado en un formato legible (`src/deobfuscated.js`). Dado que el juego fue programado originalmente usando el compilador **Haxe**, logramos recuperar los nombres originales de las funciones y variables esenciales para la lógica del juego (por ejemplo: `collectCoin`, `finishLevel`, `triggerBossBattle`, `hurt`, `score`, entre otras).
+- **Motor Principal**: HTML5 / JavaScript (Vite como bundler)
+- **Windows (Escritorio)**: Tauri (Rust + WebView2). Esto genera un ejecutable extremadamente ligero (~5-10 MB) que usa el motor web nativo de Windows.
+- **Android (Móvil)**: Capacitor. Empaqueta el juego como una aplicación nativa de Android que usa los controles táctiles originales del juego.
 
-## Development Setup
+## Requisitos Previos
 
-El proyecto ha sido modernizado y ahora utiliza [Vite](https://vitejs.dev/) como herramienta de empaquetado y desarrollo, permitiendo hacer modificaciones a la lógica del juego y ver los resultados en tiempo real.
+- [Node.js](https://nodejs.org/) (Para gestionar dependencias y Vite)
+- [Rust](https://www.rust-lang.org/) (Obligatorio para compilar la versión de Windows con Tauri)
+- [Android Studio](https://developer.android.com/studio) (Para compilar la versión de Android)
 
-### Requisitos
-- Node.js (v14+)
-- npm
+## Instalación
 
-### Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/IsraelDXPP/project-laser-game.git
+   cd project-laser-game
+   ```
 
-1. Clona el repositorio e instala las dependencias:
+2. Instala las dependencias:
    ```bash
    npm install
    ```
 
-2. Para iniciar el servidor de desarrollo local y jugar:
-   ```bash
-   npm run dev
-   ```
-   El servidor de desarrollo se levantará, usualmente en `http://localhost:5173`.
+## Compilación
 
-3. Para compilar una versión de producción optimizada:
-   ```bash
-   npm run build
-   ```
-   Los archivos compilados y listos para producción se generarán en la carpeta `dist`.
+### Windows (Tauri)
+Para generar el ejecutable nativo y ultra-ligero para Windows:
 
-## Acknowledgements
-Este proyecto mantiene los assets originales y la funcionalidad del minijuego oculto de Brawl Stars, pero ahora con una arquitectura de código abierto que facilita la experimentación y modificación de sus mecánicas internas.
+```bash
+npm run build:windows
+```
+El ejecutable resultante se encontrará en `src-tauri/target/release/project-laser.exe`.
+
+### Android (Capacitor)
+Para sincronizar el código web y compilar el APK en modo Debug:
+
+```bash
+npm run build:android
+```
+El APK se generará en `android/app/build/outputs/apk/debug/app-debug.apk`. 
+*(También puedes abrir Android Studio en la carpeta `android` para ejecutarlo en un emulador o compilar una versión Release).*
+
+### Navegador / Web (Desarrollo)
+Para jugar el juego localmente en tu navegador web y hacer pruebas:
+
+```bash
+npm run dev
+```
+
+## Notas Importantes sobre el Código
+
+- **`src/deobfuscated.js`**: Este es el archivo principal del juego, completamente desofuscado y adaptado. Se carga usando un módulo ES para permitir la compatibilidad con el servidor HTTP interno.
+- **Controles de Android**: Se eliminó `controls.js` de la compilación de Android para evitar que interfiera con los controles táctiles nativos que el juego ya incluye.
+
+## Licencia y Uso
+
+**IMPORTANTE:** Este proyecto es un fork de un volcado (dump) del juego original que nunca fue descompilado. La licencia de este repositorio es estrictamente restrictiva.
+- Queda totalmente prohibido el uso sin dar créditos.
+- Quienes usen este código y no den créditos, serán sancionados. 
+- Los derechos originales del juego y assets pertenecen a Supercell.
