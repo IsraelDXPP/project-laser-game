@@ -6,7 +6,6 @@
   "devDependencies": {
     "@capacitor/cli": "^8.4.0",
     "@electron/packager": "^18.3.6",
-    "adm-zip": "^0.5.17",
     "cross-env": "^10.1.0",
     "electron": "^42.3.3",
     "electron-builder": "^26.0.12",
@@ -20,8 +19,8 @@
     "preview": "vite preview",
     "build:android": "npm run build && npx cap sync android && cd android && gradlew assembleDebug",
     "build:electron": "npm run build && node scripts/prepare-electron.js && npx electron-packager dist_for_electron \"Project Laser\" --platform=win32 --arch=x64 --out=dist_electron --overwrite --asar",
-    "build:windows": "npm run build:electron && node scripts/zip-electron.js",
-    "build:win": "npm run build:electron && node scripts/zip-electron.js"
+    "build:windows": "npm run build:electron",
+    "build:win": "npm run build:electron"
   },
   "repository": {
     "type": "git",
